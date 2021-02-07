@@ -1,0 +1,39 @@
+<% include ../partials/main/mainHeader.ejs %>
+
+<div class="row">
+    <div class="col-md-4 col-6 mb-3">
+        <div class="card">
+            <img src="<%=user.avatar%>" class="card-img-top" alt="user profile image">
+            <div class="card-body">
+            <h5 class="card-title"><%=user.firstName + " " + user.lastName%></h5>
+            <p class="card-text"><%=user.desc%></p>
+            <a href="/campgrounds" class="btn btn-primary">Go back</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="row text-center" style="display:flex; flex-wrap:wrap;">
+            <div class="card">
+                <h5 class="card-header"><%=user.username%>'s campgrounds <i class="fas fa-campground"></i></h5>
+                <div class="card body p-1" >
+                    <div class="row">
+                    <% campgrounds.forEach((campground) => { %>
+                        <div class="col-lg-4 col-sm-6 mb-2">
+                            <div class="card"> 
+                                <img src="<%=campground.image%>" class="card-img-top" alt="..."  id="cards">
+                                <div class="card-body" >
+                                    <h5 class="card-title"><%=campground.name%></h5>
+                                    <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">More Info</a>
+                                </div>
+                            </div>               
+                        </div>
+                    <% }); %>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<% include ../partials/main/mainFooter.ejs %>

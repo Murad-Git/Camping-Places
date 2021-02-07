@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<head>
+    <!-- Make site responsive on mobile/tablet -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Yelp Camp</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+
+</head>
+<body>
+    <div class="main">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <i class="fas fa-campground" id="navIcon"></i>
+            <a class="navbar-brand" href="/"> YelpCamp</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="nav navbar-nav">
+                <li class="<%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %> nav-item"><a class="nav-link" href="/campgrounds">Home</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <% if(!currentUser){ %>
+                    <li><a class="nav-link" href="/login">Login</a></li>
+                    <li><a class="nav-link" href="/register">Sign Up</a></li>
+                <% } else { %>
+                    <li><a class="nav-link" href="/users/<%=currentUser._id%>">Signed In As <%= currentUser.firstName +" "+ currentUser.lastName %></a></li>
+                    <li><a class="nav-link" href="/logout">Logout</a></li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+    </nav>
+     <!-- Flash Messages -->
+    <div class="container" id="flashMessages">
+        <% if(error && error.length >0){ %>
+            <div class="alert alert-danger" role="alert">
+                <%=error%>
+            </div>
+        <%}%>
+        <% if(success && success.length >0){ %>
+            <div class="alert alert-success" role="alert">
+                <%=success%>
+            </div>
+        <%}%>
+    </div>
+<div style="background-image: url(<%=campgrounds.image%>)" id="backgroundImage">
+    <div class="container" id="mainContainer">
